@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SAT — PATRULLAJE_CUADRANTES</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="title">
+    <h1>PATRULLAJE_CUADRANTES</h1>
+    <small>Tablero por cuadrantes</small>
+  </div>
+  <nav class="actions">
+    <a class="btn" href="index.html">Volver</a>
+    <a class="btn" id="btn-geo" href="xxx" target="_blank" rel="noopener">Ver análisis geográfico</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cards" id="kpis-cuads">
+    <div class="card"><div class="kpi-label">Cuadrantes activos</div><div class="kpi-value" id="c-kpi-activos">–</div></div>
+    <div class="card"><div class="kpi-label">Eventos totales</div><div class="kpi-value" id="c-kpi-eventos">–</div></div>
+  </section>
+
+  <section>
+    <h2>Ranking por cuadrante</h2>
+    <div id="c-tabla" class="table like-cards">Cargando…</div>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

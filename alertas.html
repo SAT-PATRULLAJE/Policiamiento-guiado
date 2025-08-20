@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SAT — ALERTAS_RESUMEN</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="title">
+    <h1>ALERTAS_RESUMEN</h1>
+    <small>Vista dedicada</small>
+  </div>
+  <nav class="actions">
+    <a class="btn" href="index.html">Volver</a>
+    <a class="btn" id="btn-geo" href="xxx" target="_blank" rel="noopener">Ver análisis geográfico</a>
+  </nav>
+</header>
+
+<main>
+  <section class="cards" id="kpis-alertas">
+    <div class="card"><div class="kpi-label">Alertas</div><div class="kpi-value" id="a-kpi-alertas">–</div></div>
+    <div class="card"><div class="kpi-label">Eventos</div><div class="kpi-value" id="a-kpi-eventos">–</div></div>
+    <div class="card"><div class="kpi-label">Conf. prom.</div><div class="kpi-value" id="a-kpi-conf">–</div></div>
+  </section>
+
+  <section>
+    <h2>Listado</h2>
+    <div id="a-lista" class="list">Cargando…</div>
+  </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

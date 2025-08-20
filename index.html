@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SAT — Informe de Alertas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="title">
+    <h1>SAT — Informe de Alertas</h1>
+    <small id="last-updated">Fuente: ALERTAS_RESUMEN — actualizando…</small>
+  </div>
+  <nav class="actions">
+    <button class="btn" data-modal="help-modal">Instrucciones</button>
+    <button class="btn" data-modal="refs-modal">Referencias</button>
+    <a class="btn" id="btn-geo" href="xxx" target="_blank" rel="noopener">Ver análisis geográfico</a>
+    <a class="btn" href="alertas.html">Ver ALERTAS_RESUMEN</a>
+    <a class="btn" href="cuadrantes.html">Ver PATRULLAJE_CUADRANTES</a>
+  </nav>
+</header>
+
+<main>
+  <!-- KPIs -->
+  <section class="cards" id="kpis">
+    <div class="card"><div class="kpi-label">Eventos analizados</div><div class="kpi-value" id="kpi-eventos">–</div></div>
+    <div class="card"><div class="kpi-label">Alertas detectadas</div><div class="kpi-value" id="kpi-alertas">–</div></div>
+    <div class="card"><div class="kpi-label">Radio activo (m)</div><div class="kpi-value" id="kpi-radio">–</div></div>
+    <div class="card"><div class="kpi-label">Confiabilidad prom.</div><div class="kpi-value" id="kpi-conf">–</div></div>
+    <div class="card"><div class="kpi-label">Cuadrantes activos</div><div class="kpi-value" id="kpi-cuads">–</div></div>
+  </section>
+
+  <!-- Filtros -->
+  <section class="filters" id="filters">
+    <div class="row">
+      <label>Fecha</label>
+      <select id="f-fecha">
+        <option value="7">Últimos 7 días</option>
+        <option value="14">Últimos 14 días</option>
+        <option value="30" selected>Últimos 30 días</option>
+        <option value="all">Todo</option>
+      </select>
+    </div>
+    <div class="row">
+      <label>Confiabilidad</label>
+      <select id="f-conf">
+        <option value="all" selected>Todas</option>
+        <option value="alta">Alta (≥70)</option>
+        <option value="media">Media (40–69)</option>
+        <option value="baja">Baja (&lt;40)</option>
+      </select>
+    </div>
+    <div class="row">
+      <label>Cuadrante</label>
+      <select id="f-cuad">
+        <option value="all" selected>Todos</option>
+        <option value="C1">Cuadrante 1</option>
+        <option value="C2">Cuadrante 2</option>
+        <option value="C3">Cuadrante 3</option>
+        <option value="C4">Cuadrante 4</option>
+        <option value="otros">Otros (Comis./Localidad)</option>
+      </select>
+    </div>
+    <div class="row">
+      <label>Delito</label>
+      <input id="f-delito" type="text" placeholder="Filtrar por texto…">
+    </div>
+    <div class="row actions">
+      <button class="btn primary" id="btn-aplicar">Aplicar</button>
+      <button class="btn" id="btn-limpiar">Limpiar</button>
+    </div>
+  </section>
+
+  <!-- Resúmenes -->
+  <section>
+    <h2>Resúmenes</h2>
+    <div class="summary-grid">
+      <div>
+        <h3>Por Cuadrante</h3>
+        <div id="sum-cuadrantes" class="table like-cards">Cargando…</div>
+      </div>
+      <div>
+        <h3>Por Ventana horaria</h3>
+        <div id="sum-franjas" class="table like-cards">Cargando…</div>
+      </div>
+      <div>
+        <h3>Por Día</h3>
+        <div id="sum-dias" class="table like-cards">Cargando…</div>
+      </div>
+      <div>
+        <h3>Top Comisarías</h3>
+        <div id="sum-comis" class="table like-cards">Cargando…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Listado de alertas -->
+  <section>
+    <h2>Alertas</h2>
+    <div id="lista-alertas" class="list">Cargando…</div>
+  </section>
+
+  <!-- Acciones por grupo -->
+  <section>
+    <h2>Mensajes por grupo</h2>
+    <div class="row actions">
+      <button class="btn" id="btn-wa-c1">WhatsApp — Cuadrante 1</button>
+      <button class="btn" id="btn-wa-c2">WhatsApp — Cuadrante 2</button>
+      <button class="btn" id="btn-wa-c3">WhatsApp — Cuadrante 3</button>
+      <button class="btn" id="btn-wa-c4">WhatsApp — Cuadrante 4</button>
+      <button class="btn" id="btn-wa-otros">WhatsApp — Otros</button>
+    </div>
+  </section>
+</main>
+
+<!-- MODAL: Instrucciones -->
+<div class="modal" id="help-modal">
+  <div class="modal-card">
+    <h3>Instrucciones de uso</h3>
+    <ol>
+      <li>Elegí filtros (fecha, confiabilidad, cuadrante, delito).</li>
+      <li>Mirá KPIs y resúmenes.</li>
+      <li>Abrí una alerta para ver <b>WKT</b> y el <b>link de mapa</b>.</li>
+      <li>Tocá <b>WhatsApp</b> para copiar el mensaje y pegar al patrullero.</li>
+      <li>Para consignas por zona, usá <b>WhatsApp — Cuadrante X</b> u <b>Otros</b>.</li>
+    </ol>
+    <div class="row actions"><button class="btn" data-close>Entendido</button></div>
+  </div>
+</div>
+
+<!-- MODAL: Referencias -->
+<div class="modal" id="refs-modal">
+  <div class="modal-card">
+    <h3>Referencias</h3>
+    <p><b>Rangos horarios SAT</b></p>
+    <ul>
+      <li>Madrugada: 00:00–05:59</li>
+      <li>Mañana: 06:00–11:59</li>
+      <li>Tarde: 12:00–17:59</li>
+      <li>Noche: 18:00–23:59</li>
+    </ul>
+    <p><b>¿Qué es Confiabilidad (0–100)?</b> Indicador que combina:
+      <br>1) Tamaño del clúster (más eventos = mejor señal)
+      <br>2) Ajuste espacial (hechos cerca del centro)
+      <br>3) Concentración temporal (ventana de horas corta)
+    </p>
+    <p><b>Umbrales operativos</b></p>
+    <ul>
+      <li><b>Alta (≥70):</b> patrón claro → priorizar patrullaje focalizado (WKT + Calles)</li>
+      <li><b>Media (40–69):</b> indicios; reforzar y ajustar con 24–48 h</li>
+      <li><b>Baja (&lt;40):</b> monitoreo; patrullaje de oportunidad</li>
+    </ul>
+    <p><i>Rango horario total</i> = intervalo min–max de horas de los eventos del clúster.</p>
+    <div class="row actions"><button class="btn" data-close>Cerrar</button></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
